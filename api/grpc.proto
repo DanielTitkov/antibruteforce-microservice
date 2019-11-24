@@ -1,3 +1,57 @@
 syntax = "proto3";
 
 package api;
+
+option go_package = "api";
+// protoc api/grpc.proto --go_out=plugins=grpc:.
+
+service EventService {
+    rpc Attempt (AttemptRequest) returns (AttemptResponse);
+    rpc AddToBlacklist (AddToBlacklistRequest) returns (AddToBlacklistResponse);
+    rpc RemoveFromBlacklist (RemoveFromBlacklistRequest) returns (RemoveFromBlacklistResponse);
+    rpc AddToWhitelist (AddToWhitelistRequest) returns (AddToWhitelistResponse);
+    rpc RemoveFromWhite (RemoveFromWhitelistRequest) returns (RemoveFromWhitelistResponse);
+}
+
+message AttemptRequest {
+    string login = 1;
+    string password = 2;
+    string ip = 3;
+}
+
+message AttemptResponse {
+    string status = 1;
+    bool ok = 2;
+}
+
+message AddToBlacklistRequest {
+    string ip = 1;
+}
+
+message AddToBlacklistResponse {
+    string status = 1;
+}
+
+message RemoveFromBlacklistRequest {
+    string ip = 1;
+}
+
+message RemoveFromBlacklistResponse {
+    string status = 1;
+}
+
+message AddToWhitelistRequest {
+    string ip = 1;
+}
+
+message AddToWhitelistResponse {
+    string status = 1;
+}
+
+message RemoveFromWhitelistRequest {
+    string ip = 1;
+}
+
+message RemoveFromWhitelistResponse {
+    string status = 1;
+}
