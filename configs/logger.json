@@ -1,0 +1,26 @@
+{
+    "level": "info",
+    "encoding": "console",
+    "outputPaths": ["stdout", "./log.log"],
+    "errorOutputPaths": ["./error.log"],
+    "encoderConfig": {
+        "messageKey": "message",
+        "levelKey": "level",
+        "nameKey": "logger",
+        "timeKey": "time",
+        "callerKey": "logger",
+        "stacktraceKey": "stacktrace",
+        "callstackKey": "callstack",
+        "errorKey": "error",
+        "timeEncoder": "iso8601",
+        "fileKey": "file",
+        "levelEncoder": "capitalColor",
+        "durationEncoder": "second",
+        "callerEncoder": "full",
+        "nameEncoder": "full",
+        "sampling": {
+            "initial": "3",
+            "thereafter": "10"
+        }
+    }
+}

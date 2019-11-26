@@ -3,13 +3,14 @@
 
 package api
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-
 import (
-	context "golang.org/x/net/context"
+	context "context"
+	fmt "fmt"
+	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -21,7 +22,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type AttemptRequest struct {
 	Login                string   `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
@@ -36,16 +37,17 @@ func (m *AttemptRequest) Reset()         { *m = AttemptRequest{} }
 func (m *AttemptRequest) String() string { return proto.CompactTextString(m) }
 func (*AttemptRequest) ProtoMessage()    {}
 func (*AttemptRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{0}
+	return fileDescriptor_c1dd9633236863f3, []int{0}
 }
+
 func (m *AttemptRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AttemptRequest.Unmarshal(m, b)
 }
 func (m *AttemptRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AttemptRequest.Marshal(b, m, deterministic)
 }
-func (dst *AttemptRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AttemptRequest.Merge(dst, src)
+func (m *AttemptRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AttemptRequest.Merge(m, src)
 }
 func (m *AttemptRequest) XXX_Size() int {
 	return xxx_messageInfo_AttemptRequest.Size(m)
@@ -89,16 +91,17 @@ func (m *AttemptResponse) Reset()         { *m = AttemptResponse{} }
 func (m *AttemptResponse) String() string { return proto.CompactTextString(m) }
 func (*AttemptResponse) ProtoMessage()    {}
 func (*AttemptResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{1}
+	return fileDescriptor_c1dd9633236863f3, []int{1}
 }
+
 func (m *AttemptResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AttemptResponse.Unmarshal(m, b)
 }
 func (m *AttemptResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AttemptResponse.Marshal(b, m, deterministic)
 }
-func (dst *AttemptResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AttemptResponse.Merge(dst, src)
+func (m *AttemptResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AttemptResponse.Merge(m, src)
 }
 func (m *AttemptResponse) XXX_Size() int {
 	return xxx_messageInfo_AttemptResponse.Size(m)
@@ -134,16 +137,17 @@ func (m *AddToBlacklistRequest) Reset()         { *m = AddToBlacklistRequest{} }
 func (m *AddToBlacklistRequest) String() string { return proto.CompactTextString(m) }
 func (*AddToBlacklistRequest) ProtoMessage()    {}
 func (*AddToBlacklistRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{2}
+	return fileDescriptor_c1dd9633236863f3, []int{2}
 }
+
 func (m *AddToBlacklistRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddToBlacklistRequest.Unmarshal(m, b)
 }
 func (m *AddToBlacklistRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AddToBlacklistRequest.Marshal(b, m, deterministic)
 }
-func (dst *AddToBlacklistRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddToBlacklistRequest.Merge(dst, src)
+func (m *AddToBlacklistRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddToBlacklistRequest.Merge(m, src)
 }
 func (m *AddToBlacklistRequest) XXX_Size() int {
 	return xxx_messageInfo_AddToBlacklistRequest.Size(m)
@@ -172,16 +176,17 @@ func (m *AddToBlacklistResponse) Reset()         { *m = AddToBlacklistResponse{}
 func (m *AddToBlacklistResponse) String() string { return proto.CompactTextString(m) }
 func (*AddToBlacklistResponse) ProtoMessage()    {}
 func (*AddToBlacklistResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{3}
+	return fileDescriptor_c1dd9633236863f3, []int{3}
 }
+
 func (m *AddToBlacklistResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddToBlacklistResponse.Unmarshal(m, b)
 }
 func (m *AddToBlacklistResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AddToBlacklistResponse.Marshal(b, m, deterministic)
 }
-func (dst *AddToBlacklistResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddToBlacklistResponse.Merge(dst, src)
+func (m *AddToBlacklistResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddToBlacklistResponse.Merge(m, src)
 }
 func (m *AddToBlacklistResponse) XXX_Size() int {
 	return xxx_messageInfo_AddToBlacklistResponse.Size(m)
@@ -210,16 +215,17 @@ func (m *RemoveFromBlacklistRequest) Reset()         { *m = RemoveFromBlacklistR
 func (m *RemoveFromBlacklistRequest) String() string { return proto.CompactTextString(m) }
 func (*RemoveFromBlacklistRequest) ProtoMessage()    {}
 func (*RemoveFromBlacklistRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{4}
+	return fileDescriptor_c1dd9633236863f3, []int{4}
 }
+
 func (m *RemoveFromBlacklistRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RemoveFromBlacklistRequest.Unmarshal(m, b)
 }
 func (m *RemoveFromBlacklistRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RemoveFromBlacklistRequest.Marshal(b, m, deterministic)
 }
-func (dst *RemoveFromBlacklistRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveFromBlacklistRequest.Merge(dst, src)
+func (m *RemoveFromBlacklistRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveFromBlacklistRequest.Merge(m, src)
 }
 func (m *RemoveFromBlacklistRequest) XXX_Size() int {
 	return xxx_messageInfo_RemoveFromBlacklistRequest.Size(m)
@@ -248,16 +254,17 @@ func (m *RemoveFromBlacklistResponse) Reset()         { *m = RemoveFromBlacklist
 func (m *RemoveFromBlacklistResponse) String() string { return proto.CompactTextString(m) }
 func (*RemoveFromBlacklistResponse) ProtoMessage()    {}
 func (*RemoveFromBlacklistResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{5}
+	return fileDescriptor_c1dd9633236863f3, []int{5}
 }
+
 func (m *RemoveFromBlacklistResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RemoveFromBlacklistResponse.Unmarshal(m, b)
 }
 func (m *RemoveFromBlacklistResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RemoveFromBlacklistResponse.Marshal(b, m, deterministic)
 }
-func (dst *RemoveFromBlacklistResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveFromBlacklistResponse.Merge(dst, src)
+func (m *RemoveFromBlacklistResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveFromBlacklistResponse.Merge(m, src)
 }
 func (m *RemoveFromBlacklistResponse) XXX_Size() int {
 	return xxx_messageInfo_RemoveFromBlacklistResponse.Size(m)
@@ -286,16 +293,17 @@ func (m *AddToWhitelistRequest) Reset()         { *m = AddToWhitelistRequest{} }
 func (m *AddToWhitelistRequest) String() string { return proto.CompactTextString(m) }
 func (*AddToWhitelistRequest) ProtoMessage()    {}
 func (*AddToWhitelistRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{6}
+	return fileDescriptor_c1dd9633236863f3, []int{6}
 }
+
 func (m *AddToWhitelistRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddToWhitelistRequest.Unmarshal(m, b)
 }
 func (m *AddToWhitelistRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AddToWhitelistRequest.Marshal(b, m, deterministic)
 }
-func (dst *AddToWhitelistRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddToWhitelistRequest.Merge(dst, src)
+func (m *AddToWhitelistRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddToWhitelistRequest.Merge(m, src)
 }
 func (m *AddToWhitelistRequest) XXX_Size() int {
 	return xxx_messageInfo_AddToWhitelistRequest.Size(m)
@@ -324,16 +332,17 @@ func (m *AddToWhitelistResponse) Reset()         { *m = AddToWhitelistResponse{}
 func (m *AddToWhitelistResponse) String() string { return proto.CompactTextString(m) }
 func (*AddToWhitelistResponse) ProtoMessage()    {}
 func (*AddToWhitelistResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{7}
+	return fileDescriptor_c1dd9633236863f3, []int{7}
 }
+
 func (m *AddToWhitelistResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddToWhitelistResponse.Unmarshal(m, b)
 }
 func (m *AddToWhitelistResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_AddToWhitelistResponse.Marshal(b, m, deterministic)
 }
-func (dst *AddToWhitelistResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddToWhitelistResponse.Merge(dst, src)
+func (m *AddToWhitelistResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddToWhitelistResponse.Merge(m, src)
 }
 func (m *AddToWhitelistResponse) XXX_Size() int {
 	return xxx_messageInfo_AddToWhitelistResponse.Size(m)
@@ -362,16 +371,17 @@ func (m *RemoveFromWhitelistRequest) Reset()         { *m = RemoveFromWhitelistR
 func (m *RemoveFromWhitelistRequest) String() string { return proto.CompactTextString(m) }
 func (*RemoveFromWhitelistRequest) ProtoMessage()    {}
 func (*RemoveFromWhitelistRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{8}
+	return fileDescriptor_c1dd9633236863f3, []int{8}
 }
+
 func (m *RemoveFromWhitelistRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RemoveFromWhitelistRequest.Unmarshal(m, b)
 }
 func (m *RemoveFromWhitelistRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RemoveFromWhitelistRequest.Marshal(b, m, deterministic)
 }
-func (dst *RemoveFromWhitelistRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveFromWhitelistRequest.Merge(dst, src)
+func (m *RemoveFromWhitelistRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveFromWhitelistRequest.Merge(m, src)
 }
 func (m *RemoveFromWhitelistRequest) XXX_Size() int {
 	return xxx_messageInfo_RemoveFromWhitelistRequest.Size(m)
@@ -400,16 +410,17 @@ func (m *RemoveFromWhitelistResponse) Reset()         { *m = RemoveFromWhitelist
 func (m *RemoveFromWhitelistResponse) String() string { return proto.CompactTextString(m) }
 func (*RemoveFromWhitelistResponse) ProtoMessage()    {}
 func (*RemoveFromWhitelistResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_grpc_a889fb3fc4b84f77, []int{9}
+	return fileDescriptor_c1dd9633236863f3, []int{9}
 }
+
 func (m *RemoveFromWhitelistResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RemoveFromWhitelistResponse.Unmarshal(m, b)
 }
 func (m *RemoveFromWhitelistResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_RemoveFromWhitelistResponse.Marshal(b, m, deterministic)
 }
-func (dst *RemoveFromWhitelistResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveFromWhitelistResponse.Merge(dst, src)
+func (m *RemoveFromWhitelistResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveFromWhitelistResponse.Merge(m, src)
 }
 func (m *RemoveFromWhitelistResponse) XXX_Size() int {
 	return xxx_messageInfo_RemoveFromWhitelistResponse.Size(m)
@@ -440,6 +451,33 @@ func init() {
 	proto.RegisterType((*RemoveFromWhitelistResponse)(nil), "api.RemoveFromWhitelistResponse")
 }
 
+func init() { proto.RegisterFile("api/grpc.proto", fileDescriptor_c1dd9633236863f3) }
+
+var fileDescriptor_c1dd9633236863f3 = []byte{
+	// 329 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0x4f, 0x4f, 0xb3, 0x40,
+	0x10, 0x87, 0x03, 0xa4, 0x7d, 0xdb, 0x39, 0xf0, 0x26, 0xdb, 0xda, 0x90, 0xed, 0x41, 0xc2, 0x45,
+	0x0f, 0x06, 0x8d, 0x7f, 0x0e, 0x1e, 0xe1, 0x60, 0xe2, 0x15, 0x4d, 0x34, 0xde, 0x56, 0xd8, 0xd4,
+	0x0d, 0xd0, 0x5d, 0xd9, 0x6d, 0xfd, 0x10, 0x7e, 0x69, 0x53, 0x40, 0x04, 0x0a, 0x52, 0x8f, 0xc3,
+	0xfe, 0xf6, 0x99, 0x27, 0x33, 0x2c, 0x98, 0x44, 0xb0, 0xf3, 0x55, 0x26, 0x42, 0x57, 0x64, 0x5c,
+	0x71, 0x64, 0x10, 0xc1, 0x9c, 0x00, 0x4c, 0x4f, 0x29, 0x9a, 0x0a, 0x15, 0xd0, 0xf7, 0x0d, 0x95,
+	0x0a, 0xcd, 0x61, 0x94, 0xf0, 0x15, 0x5b, 0x5b, 0x9a, 0xad, 0x9d, 0x4e, 0x83, 0xa2, 0x40, 0x18,
+	0x26, 0x82, 0x48, 0xf9, 0xc1, 0xb3, 0xc8, 0xd2, 0xf3, 0x83, 0xaa, 0x46, 0x26, 0xe8, 0x4c, 0x58,
+	0x46, 0xfe, 0x55, 0x67, 0xc2, 0xb9, 0x85, 0xff, 0x15, 0x53, 0x0a, 0xbe, 0x96, 0x14, 0x2d, 0x60,
+	0x2c, 0x15, 0x51, 0x1b, 0x59, 0x52, 0xcb, 0x6a, 0x77, 0x95, 0xc7, 0x39, 0x70, 0x12, 0xe8, 0x3c,
+	0x76, 0x4e, 0xe0, 0xc8, 0x8b, 0xa2, 0x47, 0xee, 0x27, 0x24, 0x8c, 0x13, 0x26, 0x2b, 0xab, 0xa2,
+	0x87, 0x56, 0xf5, 0xb8, 0x80, 0x45, 0x3b, 0xf8, 0x7b, 0x2b, 0xe7, 0x0c, 0x70, 0x40, 0x53, 0xbe,
+	0xa5, 0x77, 0x19, 0x4f, 0x07, 0xf9, 0x37, 0xb0, 0xec, 0x4c, 0x0f, 0x34, 0xf9, 0xf6, 0x7f, 0x7a,
+	0x63, 0x8a, 0x1e, 0xe2, 0x5f, 0x0b, 0xfe, 0xc5, 0x7f, 0x90, 0xdf, 0xf0, 0x3f, 0xb8, 0xc9, 0xe5,
+	0xa7, 0x01, 0x53, 0xcf, 0x7f, 0xa0, 0xd9, 0x96, 0x85, 0x14, 0x5d, 0xc3, 0xbf, 0x72, 0x91, 0x68,
+	0xe6, 0x12, 0xc1, 0xdc, 0xe6, 0xaf, 0x82, 0xe7, 0xcd, 0x8f, 0x25, 0xfb, 0x1e, 0xcc, 0xe6, 0x6a,
+	0x10, 0x2e, 0x72, 0x5d, 0x8b, 0xc5, 0xcb, 0xce, 0xb3, 0x12, 0xf5, 0x0c, 0xb3, 0x8e, 0x2d, 0xa0,
+	0xe3, 0xfc, 0x4e, 0xff, 0x36, 0xb1, 0xdd, 0x1f, 0x68, 0x49, 0x56, 0xa3, 0xa9, 0x4b, 0xb6, 0xa7,
+	0x5b, 0x97, 0xdc, 0x9f, 0x65, 0x43, 0xf2, 0x87, 0xd7, 0x96, 0xdc, 0x83, 0xda, 0xfd, 0x81, 0x82,
+	0xec, 0x8f, 0x5e, 0x76, 0x6f, 0xf4, 0x75, 0x9c, 0xbf, 0xd7, 0xab, 0xaf, 0x00, 0x00, 0x00, 0xff,
+	0xff, 0x9c, 0xf7, 0xb7, 0x09, 0xc1, 0x03, 0x00, 0x00,
+}
+
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
 var _ grpc.ClientConn
@@ -448,225 +486,218 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// EventServiceClient is the client API for EventService service.
+// ABServiceClient is the client API for ABService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type EventServiceClient interface {
+type ABServiceClient interface {
 	Attempt(ctx context.Context, in *AttemptRequest, opts ...grpc.CallOption) (*AttemptResponse, error)
 	AddToBlacklist(ctx context.Context, in *AddToBlacklistRequest, opts ...grpc.CallOption) (*AddToBlacklistResponse, error)
 	RemoveFromBlacklist(ctx context.Context, in *RemoveFromBlacklistRequest, opts ...grpc.CallOption) (*RemoveFromBlacklistResponse, error)
 	AddToWhitelist(ctx context.Context, in *AddToWhitelistRequest, opts ...grpc.CallOption) (*AddToWhitelistResponse, error)
-	RemoveFromWhite(ctx context.Context, in *RemoveFromWhitelistRequest, opts ...grpc.CallOption) (*RemoveFromWhitelistResponse, error)
+	RemoveFromWhitelist(ctx context.Context, in *RemoveFromWhitelistRequest, opts ...grpc.CallOption) (*RemoveFromWhitelistResponse, error)
 }
 
-type eventServiceClient struct {
+type aBServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewEventServiceClient(cc *grpc.ClientConn) EventServiceClient {
-	return &eventServiceClient{cc}
+func NewABServiceClient(cc *grpc.ClientConn) ABServiceClient {
+	return &aBServiceClient{cc}
 }
 
-func (c *eventServiceClient) Attempt(ctx context.Context, in *AttemptRequest, opts ...grpc.CallOption) (*AttemptResponse, error) {
+func (c *aBServiceClient) Attempt(ctx context.Context, in *AttemptRequest, opts ...grpc.CallOption) (*AttemptResponse, error) {
 	out := new(AttemptResponse)
-	err := c.cc.Invoke(ctx, "/api.EventService/Attempt", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.ABService/Attempt", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventServiceClient) AddToBlacklist(ctx context.Context, in *AddToBlacklistRequest, opts ...grpc.CallOption) (*AddToBlacklistResponse, error) {
+func (c *aBServiceClient) AddToBlacklist(ctx context.Context, in *AddToBlacklistRequest, opts ...grpc.CallOption) (*AddToBlacklistResponse, error) {
 	out := new(AddToBlacklistResponse)
-	err := c.cc.Invoke(ctx, "/api.EventService/AddToBlacklist", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.ABService/AddToBlacklist", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventServiceClient) RemoveFromBlacklist(ctx context.Context, in *RemoveFromBlacklistRequest, opts ...grpc.CallOption) (*RemoveFromBlacklistResponse, error) {
+func (c *aBServiceClient) RemoveFromBlacklist(ctx context.Context, in *RemoveFromBlacklistRequest, opts ...grpc.CallOption) (*RemoveFromBlacklistResponse, error) {
 	out := new(RemoveFromBlacklistResponse)
-	err := c.cc.Invoke(ctx, "/api.EventService/RemoveFromBlacklist", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.ABService/RemoveFromBlacklist", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventServiceClient) AddToWhitelist(ctx context.Context, in *AddToWhitelistRequest, opts ...grpc.CallOption) (*AddToWhitelistResponse, error) {
+func (c *aBServiceClient) AddToWhitelist(ctx context.Context, in *AddToWhitelistRequest, opts ...grpc.CallOption) (*AddToWhitelistResponse, error) {
 	out := new(AddToWhitelistResponse)
-	err := c.cc.Invoke(ctx, "/api.EventService/AddToWhitelist", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.ABService/AddToWhitelist", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *eventServiceClient) RemoveFromWhite(ctx context.Context, in *RemoveFromWhitelistRequest, opts ...grpc.CallOption) (*RemoveFromWhitelistResponse, error) {
+func (c *aBServiceClient) RemoveFromWhitelist(ctx context.Context, in *RemoveFromWhitelistRequest, opts ...grpc.CallOption) (*RemoveFromWhitelistResponse, error) {
 	out := new(RemoveFromWhitelistResponse)
-	err := c.cc.Invoke(ctx, "/api.EventService/RemoveFromWhite", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/api.ABService/RemoveFromWhitelist", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EventServiceServer is the server API for EventService service.
-type EventServiceServer interface {
+// ABServiceServer is the server API for ABService service.
+type ABServiceServer interface {
 	Attempt(context.Context, *AttemptRequest) (*AttemptResponse, error)
 	AddToBlacklist(context.Context, *AddToBlacklistRequest) (*AddToBlacklistResponse, error)
 	RemoveFromBlacklist(context.Context, *RemoveFromBlacklistRequest) (*RemoveFromBlacklistResponse, error)
 	AddToWhitelist(context.Context, *AddToWhitelistRequest) (*AddToWhitelistResponse, error)
-	RemoveFromWhite(context.Context, *RemoveFromWhitelistRequest) (*RemoveFromWhitelistResponse, error)
+	RemoveFromWhitelist(context.Context, *RemoveFromWhitelistRequest) (*RemoveFromWhitelistResponse, error)
 }
 
-func RegisterEventServiceServer(s *grpc.Server, srv EventServiceServer) {
-	s.RegisterService(&_EventService_serviceDesc, srv)
+// UnimplementedABServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedABServiceServer struct {
 }
 
-func _EventService_Attempt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func (*UnimplementedABServiceServer) Attempt(ctx context.Context, req *AttemptRequest) (*AttemptResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Attempt not implemented")
+}
+func (*UnimplementedABServiceServer) AddToBlacklist(ctx context.Context, req *AddToBlacklistRequest) (*AddToBlacklistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddToBlacklist not implemented")
+}
+func (*UnimplementedABServiceServer) RemoveFromBlacklist(ctx context.Context, req *RemoveFromBlacklistRequest) (*RemoveFromBlacklistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFromBlacklist not implemented")
+}
+func (*UnimplementedABServiceServer) AddToWhitelist(ctx context.Context, req *AddToWhitelistRequest) (*AddToWhitelistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddToWhitelist not implemented")
+}
+func (*UnimplementedABServiceServer) RemoveFromWhitelist(ctx context.Context, req *RemoveFromWhitelistRequest) (*RemoveFromWhitelistResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFromWhitelist not implemented")
+}
+
+func RegisterABServiceServer(s *grpc.Server, srv ABServiceServer) {
+	s.RegisterService(&_ABService_serviceDesc, srv)
+}
+
+func _ABService_Attempt_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AttemptRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventServiceServer).Attempt(ctx, in)
+		return srv.(ABServiceServer).Attempt(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.EventService/Attempt",
+		FullMethod: "/api.ABService/Attempt",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventServiceServer).Attempt(ctx, req.(*AttemptRequest))
+		return srv.(ABServiceServer).Attempt(ctx, req.(*AttemptRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventService_AddToBlacklist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ABService_AddToBlacklist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddToBlacklistRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventServiceServer).AddToBlacklist(ctx, in)
+		return srv.(ABServiceServer).AddToBlacklist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.EventService/AddToBlacklist",
+		FullMethod: "/api.ABService/AddToBlacklist",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventServiceServer).AddToBlacklist(ctx, req.(*AddToBlacklistRequest))
+		return srv.(ABServiceServer).AddToBlacklist(ctx, req.(*AddToBlacklistRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventService_RemoveFromBlacklist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ABService_RemoveFromBlacklist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveFromBlacklistRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventServiceServer).RemoveFromBlacklist(ctx, in)
+		return srv.(ABServiceServer).RemoveFromBlacklist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.EventService/RemoveFromBlacklist",
+		FullMethod: "/api.ABService/RemoveFromBlacklist",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventServiceServer).RemoveFromBlacklist(ctx, req.(*RemoveFromBlacklistRequest))
+		return srv.(ABServiceServer).RemoveFromBlacklist(ctx, req.(*RemoveFromBlacklistRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventService_AddToWhitelist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ABService_AddToWhitelist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddToWhitelistRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventServiceServer).AddToWhitelist(ctx, in)
+		return srv.(ABServiceServer).AddToWhitelist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.EventService/AddToWhitelist",
+		FullMethod: "/api.ABService/AddToWhitelist",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventServiceServer).AddToWhitelist(ctx, req.(*AddToWhitelistRequest))
+		return srv.(ABServiceServer).AddToWhitelist(ctx, req.(*AddToWhitelistRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EventService_RemoveFromWhite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ABService_RemoveFromWhitelist_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RemoveFromWhitelistRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EventServiceServer).RemoveFromWhite(ctx, in)
+		return srv.(ABServiceServer).RemoveFromWhitelist(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.EventService/RemoveFromWhite",
+		FullMethod: "/api.ABService/RemoveFromWhitelist",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventServiceServer).RemoveFromWhite(ctx, req.(*RemoveFromWhitelistRequest))
+		return srv.(ABServiceServer).RemoveFromWhitelist(ctx, req.(*RemoveFromWhitelistRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _EventService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "api.EventService",
-	HandlerType: (*EventServiceServer)(nil),
+var _ABService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "api.ABService",
+	HandlerType: (*ABServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Attempt",
-			Handler:    _EventService_Attempt_Handler,
+			Handler:    _ABService_Attempt_Handler,
 		},
 		{
 			MethodName: "AddToBlacklist",
-			Handler:    _EventService_AddToBlacklist_Handler,
+			Handler:    _ABService_AddToBlacklist_Handler,
 		},
 		{
 			MethodName: "RemoveFromBlacklist",
-			Handler:    _EventService_RemoveFromBlacklist_Handler,
+			Handler:    _ABService_RemoveFromBlacklist_Handler,
 		},
 		{
 			MethodName: "AddToWhitelist",
-			Handler:    _EventService_AddToWhitelist_Handler,
+			Handler:    _ABService_AddToWhitelist_Handler,
 		},
 		{
-			MethodName: "RemoveFromWhite",
-			Handler:    _EventService_RemoveFromWhite_Handler,
+			MethodName: "RemoveFromWhitelist",
+			Handler:    _ABService_RemoveFromWhitelist_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "api/grpc.proto",
-}
-
-func init() { proto.RegisterFile("api/grpc.proto", fileDescriptor_grpc_a889fb3fc4b84f77) }
-
-var fileDescriptor_grpc_a889fb3fc4b84f77 = []byte{
-	// 332 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x93, 0x4b, 0x4b, 0xfb, 0x40,
-	0x14, 0xc5, 0x69, 0x4a, 0xfb, 0xef, 0xff, 0x22, 0x29, 0x4c, 0x6b, 0x09, 0xd3, 0x85, 0x21, 0x1b,
-	0x5d, 0x48, 0x14, 0x1f, 0x0b, 0x97, 0x2d, 0x28, 0xb8, 0x8d, 0x05, 0xc5, 0xdd, 0x98, 0x0c, 0x75,
-	0xc8, 0x63, 0xc6, 0xcc, 0x34, 0x7e, 0x07, 0x3f, 0xb5, 0x34, 0x89, 0x21, 0x4f, 0x53, 0x97, 0x37,
-	0x73, 0xe6, 0x9c, 0x1f, 0xf7, 0x64, 0x40, 0x27, 0x82, 0x5d, 0x6c, 0x63, 0xe1, 0xda, 0x22, 0xe6,
-	0x8a, 0xa3, 0x21, 0x11, 0xcc, 0x72, 0x40, 0x5f, 0x29, 0x45, 0x43, 0xa1, 0x1c, 0xfa, 0xb1, 0xa3,
-	0x52, 0xa1, 0x39, 0x8c, 0x02, 0xbe, 0x65, 0x91, 0x31, 0x30, 0x07, 0x67, 0xff, 0x9d, 0x6c, 0x40,
-	0x18, 0x26, 0x82, 0x48, 0xf9, 0xc9, 0x63, 0xcf, 0xd0, 0xd2, 0x83, 0x62, 0x46, 0x3a, 0x68, 0x4c,
-	0x18, 0xc3, 0xf4, 0xab, 0xc6, 0x84, 0x75, 0x07, 0xd3, 0xc2, 0x53, 0x0a, 0x1e, 0x49, 0x8a, 0x16,
-	0x30, 0x96, 0x8a, 0xa8, 0x9d, 0xcc, 0x5d, 0xf3, 0x69, 0x7f, 0x95, 0xfb, 0xa9, 0xe1, 0xc4, 0xd1,
-	0xb8, 0x6f, 0x9d, 0xc2, 0xf1, 0xca, 0xf3, 0x36, 0x7c, 0x1d, 0x10, 0xd7, 0x0f, 0x98, 0x2c, 0xa8,
-	0xb2, 0x8c, 0x41, 0x91, 0x71, 0x09, 0x8b, 0xba, 0xf0, 0xf7, 0x28, 0xeb, 0x1c, 0xb0, 0x43, 0x43,
-	0x9e, 0xd0, 0x87, 0x98, 0x87, 0xbd, 0xfe, 0xb7, 0xb0, 0x6c, 0x55, 0xf7, 0x84, 0xfc, 0xf0, 0x3f,
-	0xbf, 0x33, 0x45, 0x0f, 0xe1, 0x2f, 0x09, 0xff, 0xc2, 0xdf, 0xeb, 0x5f, 0xe1, 0x3f, 0x38, 0xe4,
-	0xea, 0x6b, 0x08, 0x47, 0xf7, 0x09, 0x8d, 0xd4, 0x13, 0x8d, 0x13, 0xe6, 0x52, 0x74, 0x03, 0xff,
-	0xf2, 0x2e, 0xd1, 0xcc, 0x26, 0x82, 0xd9, 0xd5, 0xbf, 0x05, 0xcf, 0xab, 0x1f, 0x73, 0xfb, 0x47,
-	0xd0, 0xab, 0xed, 0x20, 0x9c, 0xe9, 0xda, 0xba, 0xc5, 0xcb, 0xd6, 0xb3, 0xdc, 0xea, 0x05, 0x66,
-	0x2d, 0x45, 0xa0, 0x93, 0xf4, 0x4e, 0x77, 0xa1, 0xd8, 0xec, 0x16, 0xd4, 0x20, 0x8b, 0xed, 0x94,
-	0x21, 0xeb, 0x0b, 0x2e, 0x43, 0x36, 0xd7, 0xb9, 0x81, 0x69, 0x6d, 0xdb, 0x0d, 0xc0, 0x86, 0xa1,
-	0xd9, 0x2d, 0xc8, 0x5c, 0xd7, 0xa3, 0xd7, 0xfd, 0x13, 0x7d, 0x1b, 0xa7, 0xcf, 0xf5, 0xfa, 0x3b,
-	0x00, 0x00, 0xff, 0xff, 0xed, 0x53, 0x4b, 0x31, 0xc0, 0x03, 0x00, 0x00,
 }

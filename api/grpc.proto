@@ -5,12 +5,12 @@ package api;
 option go_package = "api";
 // protoc api/grpc.proto --go_out=plugins=grpc:.
 
-service EventService {
+service ABService {
     rpc Attempt (AttemptRequest) returns (AttemptResponse);
     rpc AddToBlacklist (AddToBlacklistRequest) returns (AddToBlacklistResponse);
     rpc RemoveFromBlacklist (RemoveFromBlacklistRequest) returns (RemoveFromBlacklistResponse);
     rpc AddToWhitelist (AddToWhitelistRequest) returns (AddToWhitelistResponse);
-    rpc RemoveFromWhite (RemoveFromWhitelistRequest) returns (RemoveFromWhitelistResponse);
+    rpc RemoveFromWhitelist (RemoveFromWhitelistRequest) returns (RemoveFromWhitelistResponse);
 }
 
 message AttemptRequest {
