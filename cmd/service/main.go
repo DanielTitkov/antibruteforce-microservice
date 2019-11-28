@@ -14,12 +14,12 @@ func main() {
 
 	l, err := logger.New("./configs/logger.json")
 	if err != nil {
-		log.Fatalf("error while setting up logger: %v", err)
+		log.Fatalf("setting up logger failed: %v", err)
 	}
 
 	c, err := config.NewAppConfig("./configs/app.yaml")
 	if err != nil {
-		l.Fatalf("error while setting up config: %v", err)
+		l.Fatalf("setting up config failed: %v", err)
 	}
 
 	application := app.New(c, l)
