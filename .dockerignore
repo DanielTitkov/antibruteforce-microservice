@@ -18,3 +18,7 @@ test
 
 # MD files
 *.md
+
+# logs
+error.log
+log.log

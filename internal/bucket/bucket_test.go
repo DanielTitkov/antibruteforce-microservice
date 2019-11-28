@@ -1,16 +1,18 @@
 package bucket
 
 import (
+	"context"
 	"testing"
 	"time"
 )
 
 func TestBucketOverfill(t *testing.T) {
-	b, err := New(10, 60)
+	ctx := context.Background()
+	b, err := New(ctx, 10, 60)
 	if err != nil {
 		t.Errorf("bucket creating failed with error: %v", err)
 	}
-	for i := 0; i < 11; i++ {
+	for i := 0; i < 20; i++ { // test will fail if this number is bigger, because leak manages to get one value from the channel
 		res := b.Add()
 		if i < 10 && res != true {
 			t.Errorf("expeted true, got %v on iteration %d", res, i)
@@ -22,7 +24,8 @@ func TestBucketOverfill(t *testing.T) {
 }
 
 func TestBucketLeakingResult(t *testing.T) {
-	b, err := New(100, 1)
+	ctx := context.Background()
+	b, err := New(ctx, 100, 1)
 	if err != nil {
 		t.Errorf("bucket creating failed with error: %v", err)
 	}
@@ -39,7 +42,8 @@ func TestBucketLeakingResult(t *testing.T) {
 }
 
 func TestBuckerLeakingQueueLen(t *testing.T) {
-	b, err := New(100, 1)
+	ctx := context.Background()
+	b, err := New(ctx, 100, 1)
 	if err != nil {
 		t.Errorf("bucket creating failed with error: %v", err)
 	}
@@ -53,5 +57,21 @@ func TestBuckerLeakingQueueLen(t *testing.T) {
 	time.Sleep(time.Second + time.Millisecond*10)
 	if res := len(b.queue); res != 0 {
 		t.Errorf("expected empty queue, got %d", res)
+	}
+}
+
+func TestBucketIsAlive(t *testing.T) {
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+	b, err := New(ctx, 100, 1)
+	if err != nil {
+		t.Errorf("bucket creating failed with error: %v", err)
+	}
+	if res := b.IsAlive(); res != true {
+		t.Errorf("expected true before cancelation, got %v", res)
+	}
+	cancel()
+	if res := b.IsAlive(); res != false {
+		t.Errorf("expected false after cancelation, got %v", res)
 	}
 }

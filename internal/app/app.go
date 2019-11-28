@@ -6,13 +6,15 @@ import (
 
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/config"
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/grpc"
+	"github.com/DanielTitkov/antibruteforce-microservice/internal/bucketstorage"
 	"go.uber.org/zap"
 )
 
 // Application holds app settings and meta
 type Application struct {
-	config *config.AppConfig
-	logger *zap.SugaredLogger
+	config        *config.AppConfig
+	logger        *zap.SugaredLogger
+	bucketStorage bucketstorage.BucketStorage
 }
 
 func New(
