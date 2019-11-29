@@ -9,18 +9,21 @@ import (
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/bucket"
 )
 
+// BucketStorage is a map of maps of buckets with string tags.
 type BucketStorage struct {
 	mx      sync.RWMutex
 	rubrics []string
 	M       map[string]map[string]bucket.Bucket
 }
 
+// BucketArgs is struct with options for creating new buckets in the storage
 type BucketArgs struct {
 	ctx      context.Context
 	rate     int // to 1 timespan unit
 	timespan int // seconds
 }
 
+// New return new bucket storage. Clean routine is optional, 0 means no clean, i>0 means clean each i milliseconds
 func New(rubrics []string, clean int) (*BucketStorage, error) {
 	m := make(map[string]map[string]bucket.Bucket)
 	for _, s := range rubrics {
@@ -33,6 +36,7 @@ func New(rubrics []string, clean int) (*BucketStorage, error) {
 	return &bs, nil
 }
 
+// Resolve is main endpoint for sending values to storage
 func (bs *BucketStorage) Resolve(rubric, arg string, ba BucketArgs) (bool, error) {
 	m, ok := bs.M[rubric]
 	if !ok {
@@ -47,12 +51,13 @@ func (bs *BucketStorage) Resolve(rubric, arg string, ba BucketArgs) (bool, error
 		}
 		m[arg] = b
 	}
-	b, _ = m[arg]
+	b = m[arg]
 	res := b.Add()
 	bs.mx.Unlock()
 	return res, nil
 }
 
+// Clean deletes from storage all buckets with IsAlive == false
 func (bs *BucketStorage) Clean() error {
 	bs.mx.Lock()
 	for _, v := range bs.M {

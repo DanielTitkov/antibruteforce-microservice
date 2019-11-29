@@ -50,6 +50,7 @@ func (b *Bucket) Kill() error {
 	return nil
 }
 
+// IsAlive method returns true if bucket's context isn't done
 func (b *Bucket) IsAlive() bool {
 	select {
 	case <-b.ctx.Done():

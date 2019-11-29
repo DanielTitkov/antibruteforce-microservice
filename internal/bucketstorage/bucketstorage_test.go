@@ -67,7 +67,7 @@ func TestDeadBucketManualClean(t *testing.T) {
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	ba := BucketArgs{ctx, 100, 1}
-	bs.Resolve("ip", "foo", ba)
+	_, _ = bs.Resolve("ip", "foo", ba)
 	if _, ok := bs.M["ip"]["foo"]; !ok {
 		t.Errorf("expected bucket to exist after resolve, got %v", ok)
 	}
