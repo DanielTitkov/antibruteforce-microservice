@@ -25,11 +25,11 @@ type BucketArgs struct {
 
 // New return new bucket storage. Clean routine is optional, 0 means no clean, i>0 means clean each i milliseconds
 func New(rubrics []string, clean int) (*BucketStorage, error) {
-	m := make(map[string]map[string]bucket.Bucket)
+	bs := BucketStorage{rubrics: rubrics, M: nil}
+	bs.M = make(map[string]map[string]bucket.Bucket)
 	for _, s := range rubrics {
-		m[s] = make(map[string]bucket.Bucket)
+		bs.M[s] = make(map[string]bucket.Bucket)
 	}
-	bs := BucketStorage{rubrics: rubrics, M: m}
 	if clean > 0 {
 		bs.runClean(clean)
 	}
@@ -60,12 +60,13 @@ func (bs *BucketStorage) Resolve(rubric, arg string, ba BucketArgs) (bool, error
 // Clean deletes from storage all buckets with IsAlive == false
 func (bs *BucketStorage) Clean() error {
 	bs.mx.Lock()
-	for _, v := range bs.M {
-		for ki, vi := range v {
-			if !vi.IsAlive() {
-				delete(v, ki)
-			}
-		}
+
+	// https://github.com/golang/go/issues/20135
+	// recommends this method
+	// but it doesn't seem to work as well =(
+	bs.M = make(map[string]map[string]bucket.Bucket)
+	for _, s := range bs.rubrics {
+		bs.M[s] = make(map[string]bucket.Bucket)
 	}
 	bs.mx.Unlock()
 	return nil

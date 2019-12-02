@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"os"
 	"sync"
 
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/config"
@@ -40,7 +41,7 @@ func (app *Application) Run(ctx context.Context) {
 	// case <-httpServerErrCh:
 	// 	<-grpcServerErrCh
 	// }
-	app.logger.Info("App started")
+	app.logger.Infof("App started with pid %v", os.Getpid())
 	wg.Wait()
 }
 

@@ -23,7 +23,7 @@ func main() {
 		l.Fatalf("setting up config failed: %v", err)
 	}
 
-	bs, err := bucketstorage.New([]string{"login", "password", "ip"}, 1000*60*3) // 3 minutes
+	bs, err := bucketstorage.New([]string{"login", "password", "ip"}, 1000*c.Buckets.Clean)
 	if err != nil {
 		l.Fatalf("setting up bucket storage failed: %v", err)
 	}

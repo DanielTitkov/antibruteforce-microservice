@@ -7,3 +7,4 @@ buckets:
   passwordrate: 100 # max times for timespan
   iprate: 1000 # max times for timespan
   lifetime: 180 # seconds
+  clean: 120 # seconds

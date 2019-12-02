@@ -15,6 +15,7 @@ type AppConfig struct {
 		PasswordRate int // times for 1 timespan
 		IPRate       int // times for 1 timespan
 		Lifetime     int // bucket lifetime in seconds
+		Clean        int // storage clean interval in seconds
 	}
 }
 
