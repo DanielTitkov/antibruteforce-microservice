@@ -54,7 +54,7 @@ func TestBuckerLeakingQueueLen(t *testing.T) {
 	if res := len(b.queue); res != 100 {
 		t.Errorf("expected len of 100, got %d", res)
 	}
-	time.Sleep(time.Second + time.Millisecond*10)
+	time.Sleep(time.Second + time.Millisecond*50)
 	if res := len(b.queue); res != 0 {
 		t.Errorf("expected empty queue, got %d", res)
 	}

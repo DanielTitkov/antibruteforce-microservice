@@ -12,25 +12,27 @@ import (
 
 // Application holds app settings and meta
 type Application struct {
-	config        *config.AppConfig
-	logger        *zap.SugaredLogger
-	bucketStorage bucketstorage.BucketStorage
+	config *config.AppConfig
+	logger *zap.SugaredLogger
+	bs     *bucketstorage.BucketStorage
 }
 
 func New(
 	config *config.AppConfig,
 	logger *zap.SugaredLogger,
+	bs *bucketstorage.BucketStorage,
 ) *Application {
 	return &Application{
 		config: config,
 		logger: logger,
+		bs:     bs,
 	}
 }
 
 func (app *Application) Run(ctx context.Context) {
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go grpc.New(app.logger, app.config).Start(ctx)
+	go grpc.New(app.logger, app.config, app.bs).Start(ctx)
 
 	// select {
 	// case <-grpcServerErrCh:

@@ -7,6 +7,7 @@ import (
 
 	"github.com/DanielTitkov/antibruteforce-microservice/api"
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/config"
+	"github.com/DanielTitkov/antibruteforce-microservice/internal/bucketstorage"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
@@ -14,17 +15,19 @@ import (
 type GRPCServer struct {
 	logger *zap.SugaredLogger
 	config *config.AppConfig
+	bs     *bucketstorage.BucketStorage
 }
 
 func (srv *GRPCServer) Attempt(ctx context.Context, req *api.AttemptRequest) (*api.AttemptResponse, error) {
 	srv.logger.Infof("Recieved Attepmt request: %v", req)
+
 	return &api.AttemptResponse{Status: "success", Ok: true}, nil
 }
 
 func (srv *GRPCServer) AddToBlacklist(ctx context.Context, req *api.AddToBlacklistRequest) (*api.AddToBlacklistResponse, error) {
 	srv.logger.Info("Recieved Add To Blacklist request: %v", req)
 	return &api.AddToBlacklistResponse{Status: "success"}, nil
-}
+} 
 
 func (srv *GRPCServer) RemoveFromBlacklist(ctx context.Context, req *api.RemoveFromBlacklistRequest) (*api.RemoveFromBlacklistResponse, error) {
 	srv.logger.Info("Recieved Remove From Blacklist request: %v", req)
@@ -58,6 +61,7 @@ func (srv *GRPCServer) Start(ctx context.Context) error {
 func New(
 	logger *zap.SugaredLogger,
 	config *config.AppConfig,
+	bs *bucketstorage.BucketStorage,
 ) *GRPCServer {
-	return &GRPCServer{logger, config}
+	return &GRPCServer{logger, config, bs}
 }

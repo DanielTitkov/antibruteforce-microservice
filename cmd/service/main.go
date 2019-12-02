@@ -7,6 +7,7 @@ import (
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app"
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/config"
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/logger"
+	"github.com/DanielTitkov/antibruteforce-microservice/internal/bucketstorage"
 )
 
 func main() {
@@ -22,6 +23,11 @@ func main() {
 		l.Fatalf("setting up config failed: %v", err)
 	}
 
-	application := app.New(c, l)
+	bs, err := bucketstorage.New([]string{"login", "password", "ip"}, 1000*60*60)
+	if err != nil {
+		l.Fatalf("setting up bucket storage failed: %v", err)
+	}
+
+	application := app.New(c, l, bs)
 	application.Run(ctx)
 }
