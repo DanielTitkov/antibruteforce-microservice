@@ -1,3 +1,9 @@
 grpc:
   host: "localhost"
   port: 50051
+buckets: 
+  timespan: 60 # seconds
+  loginrate: 10 # max times for timespan
+  passwordrate: 100 # max times for timespan
+  iprate: 1000 # max times for timespan
+  lifetime: 180 # seconds

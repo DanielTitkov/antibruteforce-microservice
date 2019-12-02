@@ -18,9 +18,9 @@ type BucketStorage struct {
 
 // BucketArgs is struct with options for creating new buckets in the storage
 type BucketArgs struct {
-	ctx      context.Context
-	rate     int // to 1 timespan unit
-	timespan int // seconds
+	Ctx      context.Context
+	Rate     int // to 1 timespan unit
+	Timespan int // seconds
 }
 
 // New return new bucket storage. Clean routine is optional, 0 means no clean, i>0 means clean each i milliseconds
@@ -45,7 +45,7 @@ func (bs *BucketStorage) Resolve(rubric, arg string, ba BucketArgs) (bool, error
 	bs.mx.Lock()
 	b, ok := m[arg]
 	if !ok || !b.IsAlive() {
-		b, err := bucket.New(ba.ctx, ba.rate, ba.timespan)
+		b, err := bucket.New(ba.Ctx, ba.Rate, ba.Timespan)
 		if err != nil {
 			return false, err
 		}

@@ -9,6 +9,13 @@ type AppConfig struct {
 		Host string
 		Port int
 	}
+	Buckets struct {
+		Timespan     int // in seconds
+		LoginRate    int // times for 1 timespan
+		PasswordRate int // times for 1 timespan
+		IPRate       int // times for 1 timespan
+		Lifetime     int // bucket lifetime in seconds
+	}
 }
 
 func NewAppConfig(configFile string) (*AppConfig, error) {
