@@ -57,12 +57,10 @@ func (bs *BucketStorage) Resolve(rubric, arg string, ba BucketArgs) (bool, error
 	return res, nil
 }
 
-// Clean deletes from storage all buckets with IsAlive == false
 func (bs *BucketStorage) Clean() error {
 	bs.mx.Lock()
 
-	// https://github.com/golang/go/issues/20135
-	// recommends this method
+	// https://github.com/golang/go/issues/20135 recommends this method
 	// but it doesn't seem to work as well =(
 	bs.M = make(map[string]map[string]bucket.Bucket)
 	for _, s := range bs.rubrics {

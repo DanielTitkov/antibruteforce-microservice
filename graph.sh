@@ -1,5 +1,6 @@
 #!/bin/env bash
 
+# https://gist.github.com/nicolasazrak/32d68ed6c845a095f75f037ecc2f0436#file-graph-sh
 # https://stackoverflow.com/questions/7998302/graphing-a-processs-memory-usage
 
 # trap ctrl-c and call ctrl_c()
