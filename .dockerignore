@@ -22,3 +22,4 @@ test
 # logs
 error.log
 log.log
+heap.out

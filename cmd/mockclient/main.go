@@ -38,7 +38,7 @@ func main() {
 	defer cc.Close()
 
 	client := api.NewABServiceClient(cc)
-	ctx, cancel := context.WithTimeout(context.Background(), 540*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 360*time.Second)
 	defer cancel()
 
 	for {

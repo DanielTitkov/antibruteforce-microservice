@@ -4,6 +4,9 @@ import (
 	"context"
 	"log"
 
+	"net/http"
+	_ "net/http/pprof"
+
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app"
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/config"
 	"github.com/DanielTitkov/antibruteforce-microservice/internal/app/logger"
@@ -12,6 +15,10 @@ import (
 
 func main() {
 	ctx := context.Context(context.Background())
+
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
 
 	l, err := logger.New("./configs/logger.json")
 	if err != nil {
